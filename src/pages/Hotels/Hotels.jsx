@@ -15,7 +15,7 @@ export default function Hotels() {
 
     useEffect(() => {
         if (searchParams) {
-            console.log("Данные для поиска отелей:", searchParams);
+            console.log("Hotels data:", searchParams);
         }
 
         const fetchValues = async () => {
