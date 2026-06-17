@@ -7,7 +7,7 @@ const port = 3000
 
 app.use(cors());
 app.use(express.json())
-app.get('/destination', (req, res) => {
+app.get('/destinations', (req, res) => {
     res.send(db.destination)
 })
 

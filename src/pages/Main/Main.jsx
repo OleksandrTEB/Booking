@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from "react-redux";
 import { Formik } from 'formik';
 import { Select, DatePicker, Button, Layout } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import 'antd/dist/reset.css';
-
-import { getDestinations } from '../../api/hotelsApi.js'
+import { getDestinations } from "../../store/thunk/hotelsThunk.js";
+import { useSelector } from "react-redux";
 
 const { Content} = Layout;
 
 export default function Main() {
-    const [destinations, setDestinations] = useState([]);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const destinations = useSelector((state) => state.hotels.destinations)
 
     const initialValues = {
         destination: undefined,
@@ -19,17 +21,8 @@ export default function Main() {
     };
 
     useEffect(() => {
-        const fetchValues = async () => {
-            try {
-                const data = await getDestinations();
-                setDestinations(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchValues();
-    }, []);
+        dispatch(getDestinations())
+    }, [dispatch]);
 
     const handleSubmit = (values) => {
         console.log('Form Submitted Data:', values);

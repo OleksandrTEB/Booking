@@ -6,12 +6,6 @@ const hotelsApi = axios.create({
     baseURL: API_URL
 });
 
-export const getDestinations = async () => {
-    const response = await hotelsApi.get('/destination');
-
-    return response.data;
-}
-
 export const getHotels = async () => {
     const response = await hotelsApi.get('/hotels');
 
